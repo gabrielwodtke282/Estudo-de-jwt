@@ -17,3 +17,4 @@ public class UsuarioController {
         return "Usuarios acessados por: " + username;
     }
 }
+

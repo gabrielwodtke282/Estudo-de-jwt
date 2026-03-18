@@ -2,6 +2,7 @@ package com.gabriell.jwtEstudo.controller;
 
 import com.gabriell.jwtEstudo.entities.User;
 import com.gabriell.jwtEstudo.service.JwtService;
+import com.gabriell.jwtEstudo.service.simulador;
 import io.jsonwebtoken.Jwt;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,14 +16,10 @@ public class AuthController {
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody User usuario) {
 
-        if (usuario.getUsername().equals("gabriel") &&
-                usuario.getPassword().equals("123")) {
-
-            String token = JwtService.gerarToken(usuario.getUsername());
-
+        if (simulador.Existe(usuario)) {
+            String token = JwtService.gerarToken(usuario);
             return Map.of("token", token);
         }
-
         return Map.of("erro", "login invalido");
     }
 }
